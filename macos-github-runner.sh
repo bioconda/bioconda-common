@@ -35,10 +35,6 @@ conda config --system --add channels conda-forge
 conda config --system --set channel_priority strict
 conda info
 
-# Set local channel as highest priority
-mkdir -p "${HOME}/miniconda/conda-bld/{noarch,linux-64,osx-64}"
-conda index "${HOME}/miniconda/conda-bld"
-conda config --system --add channels "file://${HOME}/miniconda/conda-bld"
 
 conda install -y mamba
 
@@ -51,4 +47,10 @@ if ${BIOCONDA_PREP_MACOS_FOR_BUILDING:=1}; then
     # Installing bioconda-utils and conda-forge-ci-setup with conda causes dependency conflicts.
     # Installing bioconda-utils and conda-forge-ci-setup with mamba works fine.
     mamba install bioconda-utils=${BIOCONDA_UTILS_TAG} conda-forge-ci-setup
+
+    # Set local channel as highest priority (requires conda-build, which is
+    # installed as a dependency of bioconda-utils)
+    mkdir -p "${HOME}/miniconda/conda-bld/{noarch,linux-64,osx-64}"
+    conda index "${HOME}/miniconda/conda-bld"
+    conda config --system --add channels "file://${HOME}/miniconda/conda-bld"
 fi
