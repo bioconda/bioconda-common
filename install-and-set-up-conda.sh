@@ -56,6 +56,7 @@ conda config --system --add channels conda-forge
 conda config --system --set channel_priority strict
 conda info
 
+conda install mamba -y
 
 # By default, for building packages, we install bioconda-utils. However when
 # testing bioconda-utils itself, we don't want to install it from conda, in
