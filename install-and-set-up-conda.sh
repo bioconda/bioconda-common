@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# - Installs miniconda to /miniconda
+# - Installs miniconda to ${HOME}/miniconda
 # - Sets channels
 # - Installs mamba into the base env
 # - Installs bioconda-utils into a "bioconda" env.
@@ -44,7 +44,7 @@ fi
 
 # Install miniconda
 curl -L "https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VER}-${OS}-x86_64.sh" > miniconda.sh
-bash miniconda.sh -b -p "/miniconda"
+bash miniconda.sh -b -p "${HOME}/miniconda"
 
 export PATH="${HOME}/miniconda/bin:${PATH}"
 
@@ -59,8 +59,8 @@ conda info
 
 # By default, for building packages, we install bioconda-utils. However when
 # testing bioconda-utils itself, we don't want to install it from conda, in
-# which case set BIOCONDA_DISABLE_BUILD_PREP to some nonzero value.
-if ${BIOCONDA_DISABLE_BUILD_PREP:=0}; then
+# which case set BIOCONDA_DISABLE_BUILD_PREP to a non-zero value.
+if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
 
     mamba create -n bioconda -y bioconda-utils=$BIOCONDA_UTILS_TAG $BIOCONDA_ADDITIONAL_INSTALL_PKGS
 
