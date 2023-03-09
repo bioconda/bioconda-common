@@ -65,6 +65,8 @@ if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
 
     mamba create -n bioconda -y bioconda-utils=$BIOCONDA_UTILS_TAG $BIOCONDA_ADDITIONAL_INSTALL_PKGS
 
+    conda activate bioconda
+
     # Set local channel as highest priority (requires conda-build, which is
     # installed as a dependency of bioconda-utils)
     mkdir -p "${HOME}/miniconda/conda-bld/{noarch,linux-64,osx-64}"
