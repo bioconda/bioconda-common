@@ -44,7 +44,7 @@ fi
 
 # Install miniconda
 curl -L "https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VER}-${OS}-x86_64.sh" > miniconda.sh
-bash miniconda.sh -b -p "${HOME}/miniconda"
+bash miniconda.sh -b -p "/miniconda"
 
 export PATH="${HOME}/miniconda/bin:${PATH}"
 
