@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 # - Installs miniconda to ${HOME}/miniconda
 # - Sets channels
 # - Installs mamba into the base env
@@ -65,6 +67,7 @@ if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
 
     mamba create -n bioconda -y bioconda-utils=$BIOCONDA_UTILS_TAG $BIOCONDA_ADDITIONAL_INSTALL_PKGS
 
+    source ${HOME}/miniconda/etc/profile.d/conda.sh
     conda activate bioconda
 
     # Set local channel as highest priority (requires conda-build, which is
