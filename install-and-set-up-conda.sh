@@ -76,3 +76,10 @@ if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
     conda index "${HOME}/miniconda/conda-bld"
     conda config --system --add channels "file://${HOME}/miniconda/conda-bld"
 fi
+
+echo "conda config:"
+conda config --show
+
+echo "conda installed to $(which conda)"
+echo "environment(s): $(conda env list)"
+echo "DONE setting up"
