@@ -15,7 +15,6 @@ curl -L "https://raw.githubusercontent.com/bioconda/bioconda-common/master/commo
 BIOCONDA_UTILS_TAG=$(grep "^BIOCONDA_UTILS_TAG=" common.sh | cut -f2 -d "=" | sed "s/^v//g")
 MINICONDA_VER=$(grep "^MINICONDA_VER=" common.sh | cut -f2 -d "=")
 MINICONDA_INSTALLATION_DIR="/opt/miniconda"
-mkdir -p /opt
 
 if [[ $(uname) == "Darwin" ]]; then
     OS="MacOSX"
@@ -23,12 +22,15 @@ if [[ $(uname) == "Darwin" ]]; then
     # Remove existing installation on macOS runners
     sudo rm -rf /usr/local/miniconda
     sudo rm -rf ${MINICONDA_INSTALLATION_DIR}
+    sudo mkdir -p $(dirname $MINICONDA_INSTALLATION_DIR)
 
     # conda-forge-ci-setup does some additional setup for Mac.
     # Installing bioconda-utils and conda-forge-ci-setup with conda causes dependency conflicts.
     # Installing bioconda-utils and conda-forge-ci-setup with mamba works fine.
     BIOCONDA_ADDITIONAL_INSTALL_PKGS="conda-forge-ci-setup"
 else
+
+    mkdir -p $(dirname $MINICONDA_INSTALLATION_DIR)
     OS="Linux"
     BIOCONDA_ADDITIONAL_INSTALL_PKGS=""
 fi
