@@ -15,7 +15,7 @@ curl -L "https://raw.githubusercontent.com/bioconda/bioconda-common/master/commo
 BIOCONDA_UTILS_TAG=$(grep "^BIOCONDA_UTILS_TAG=" common.sh | cut -f2 -d "=" | sed "s/^v//g")
 MINICONDA_VER=$(grep "^MINICONDA_VER=" common.sh | cut -f2 -d "=")
 MINICONDA_INSTALLATION_DIR="/opt/miniconda"
-mkdir -p $(dirname $MINICONDA_INSTALLATION_DIR)
+mkdir -p /opt
 
 if [[ $(uname) == "Darwin" ]]; then
     OS="MacOSX"
