@@ -23,6 +23,7 @@ if [[ $(uname) == "Darwin" ]]; then
     sudo rm -rf /usr/local/miniconda
     sudo rm -rf ${MINICONDA_INSTALLATION_DIR}
     sudo mkdir -p $(dirname $MINICONDA_INSTALLATION_DIR)
+    sudo chown -R $USER $(dirname $MINICONDA_INSTALLATION_DIR)
 
     # conda-forge-ci-setup does some additional setup for Mac.
     # Installing bioconda-utils and conda-forge-ci-setup with conda causes dependency conflicts.
