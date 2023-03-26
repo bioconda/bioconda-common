@@ -29,7 +29,6 @@ if [[ $(uname) == "Darwin" ]]; then
     # Installing bioconda-utils and conda-forge-ci-setup with mamba works fine.
     BIOCONDA_ADDITIONAL_INSTALL_PKGS="conda-forge-ci-setup"
 else
-
     mkdir -p $(dirname $MINICONDA_INSTALLATION_DIR)
     OS="Linux"
     BIOCONDA_ADDITIONAL_INSTALL_PKGS=""
