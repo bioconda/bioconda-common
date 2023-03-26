@@ -73,3 +73,4 @@ conda config --show
 echo "=========="
 echo "environment(s): $(conda env list)"
 echo "DONE setting up via $0"
+
