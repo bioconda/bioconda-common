@@ -30,6 +30,9 @@ if [[ $(uname) == "Darwin" ]]; then
     BIOCONDA_ADDITIONAL_INSTALL_PKGS="conda-forge-ci-setup"
 else
     OS="Linux"
+
+    # Azure pipelines have conda installed here, we want to set it up manually.
+    rm -rf /usr/share/miniconda
     BIOCONDA_ADDITIONAL_INSTALL_PKGS=""
 fi
 
