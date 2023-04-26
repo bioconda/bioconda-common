@@ -15,6 +15,7 @@ curl -L "https://raw.githubusercontent.com/bioconda/bioconda-common/master/commo
 BIOCONDA_UTILS_TAG=$(grep "^BIOCONDA_UTILS_TAG=" common.sh | cut -f2 -d "=" | sed "s/^v//g")
 MINICONDA_VER=$(grep "^MINICONDA_VER=" common.sh | cut -f2 -d "=")
 MINICONDA_INSTALLATION_DIR="/opt/miniconda"
+ARCH=$(uname -m)
 
 if [[ $(uname) == "Darwin" ]]; then
     OS="MacOSX"
@@ -37,7 +38,7 @@ fi
 
 
 # Install miniconda
-curl -L "https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VER}-${OS}-x86_64.sh" > miniconda.sh
+curl -L "https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VER}-${OS}-${ARCH}.sh" > miniconda.sh
 bash miniconda.sh -b -p "${MINICONDA_INSTALLATION_DIR}"
 
 export PATH="${MINICONDA_INSTALLATION_DIR}/bin:${PATH}"
