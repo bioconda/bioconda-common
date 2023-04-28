@@ -16,7 +16,7 @@ curl -L "https://raw.githubusercontent.com/bioconda/bioconda-common/${COMMON_GIT
 cat common.sh
 
 BIOCONDA_UTILS_TAG=$(grep "^BIOCONDA_UTILS_TAG=" common.sh | cut -f2 -d "=" | sed "s/^v//g")
-MAMBAFORGE_VER=$(grep "^MINICONDA_VER=" common.sh | cut -f2 -d "=")
+MAMBAFORGE_VER=$(grep "^MAMBAFORGE_VER=" common.sh | cut -f2 -d "=")
 MAMBAFORGE_INSTALLATION_DIR="/opt/mambaforge"
 ARCH=$(uname -m)
 MAMBAFORGE_URL="https://github.com/conda-forge/miniforge/releases/download/${MAMBAFORGE_VER}/Mambaforge-${MAMBAFORGE_VER}-Linux-x86_64.sh"
