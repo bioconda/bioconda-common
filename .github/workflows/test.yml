@@ -13,3 +13,4 @@ jobs:
         run: |
           export BIOCONDA_DISABLE_BUILD_PREP=1
           curl -L "https://raw.githubusercontent.com/bioconda/bioconda-common/master/install-and-set-up-conda.sh" > install-and-set-up-conda.sh
+          bash install-and-set-up-conda.sh
