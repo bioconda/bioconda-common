@@ -39,6 +39,7 @@ fi
 
 # Install miniconda
 curl -L "https://github.com/conda-forge/miniforge/releases/download/${MAMBAFORGE_VER}/Mambaforge-${MAMBAFORGE_VER}-Linux-x86_64.sh" > mambaforge.sh
+head mambaforge.sh
 bash mambaforge.sh -b -p "${MAMBAFORGE_INSTALLATION_DIR}"
 
 export PATH="${MAMBAFORGE_INSTALLATION_DIR}/bin:${PATH}"
