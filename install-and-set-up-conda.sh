@@ -11,7 +11,8 @@ set -e
 # - Sets up local channel to have highest priority (unless $BIOCONDA_DISABLE_BUILD_PREP=1)
 
 # Extract the versions we should be using from common.sh
-curl -L "https://raw.githubusercontent.com/bioconda/bioconda-common/master/common.sh" > common.sh
+COMMON_GIT_REF=${COMMON_GIT_REF:-master}
+curl -L "https://raw.githubusercontent.com/bioconda/bioconda-common/${COMMON_GIT_REF}/common.sh" > common.sh
 BIOCONDA_UTILS_TAG=$(grep "^BIOCONDA_UTILS_TAG=" common.sh | cut -f2 -d "=" | sed "s/^v//g")
 MAMBAFORGE_VER=$(grep "^MINICONDA_VER=" common.sh | cut -f2 -d "=")
 MAMBAFORGE_INSTALLATION_DIR="/opt/mambaforge"
