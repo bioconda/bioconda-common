@@ -50,11 +50,11 @@ bash mambaforge.sh -b -p "${MAMBAFORGE_INSTALLATION_DIR}"
 export PATH="${MAMBAFORGE_INSTALLATION_DIR}/bin:${PATH}"
 
 # Set up channels
-mamba config --set always_yes yes
-mamba config --system --add channels defaults
-mamba config --system --add channels bioconda
-mamba config --system --add channels conda-forge
-mamba config --system --set channel_priority strict
+conda config --set always_yes yes
+conda config --system --add channels defaults
+conda config --system --add channels bioconda
+conda config --system --add channels conda-forge
+conda config --system --set channel_priority strict
 mamba info
 
 mamba install mamba -y
@@ -72,13 +72,13 @@ if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
     # Set local channel as highest priority (requires conda-build, which is
     # installed as a dependency of bioconda-utils)
     mkdir -p "${MINICONDA_INSTALLATION_DIR}/conda-bld/{noarch,linux-64,osx-64}"
-    mamba index "${MINICONDA_INSTALLATION_DIR}/conda-bld"
-    mamba config --system --add channels "file://${MINICONDA_INSTALLATION_DIR}/conda-bld"
+    conda index "${MINICONDA_INSTALLATION_DIR}/conda-bld"
+    conda config --system --add channels "file://${MINICONDA_INSTALLATION_DIR}/conda-bld"
 fi
 
 echo "=========="
 echo "conda config:"
-mamba config --show
+conda config --show
 echo "=========="
 echo "environment(s): $(conda env list)"
 echo "DONE setting up via $0"
