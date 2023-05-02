@@ -65,6 +65,7 @@ if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
     
     mamba create -n bioconda -y bioconda-utils=$BIOCONDA_UTILS_TAG $BIOCONDA_ADDITIONAL_INSTALL_PKGS
     
+    source ${MAMBAFORGE_INSTALLATION_DIR}/etc/profile.d/conda.sh
     source ${MAMBAFORGE_INSTALLATION_DIR}/etc/profile.d/mamba.sh
     mamba activate bioconda
     
