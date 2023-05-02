@@ -2,7 +2,7 @@
 
 set -e
 
-# - Installs miniconda to ${HOME}/miniconda. Version is determined by common.sh,
+# - Installs mambaforge to ${HOME}/mambaforge. Version is determined by common.sh,
 #   which is downloaded at runtime.
 # - Sets channel order and sets strict channel priority
 # - Installs mamba into the base env
@@ -25,7 +25,6 @@ if [[ $(uname) == "Darwin" ]]; then
     OS="MacOSX"
     
     # Remove existing installation on macOS runners
-    sudo rm -rf /usr/local/miniconda
     sudo rm -rf ${MAMBAFORGE_INSTALLATION_DIR}
     sudo mkdir -p $(dirname $MAMBAFORGE_INSTALLATION_DIR)
     sudo chown -R $USER $(dirname $MAMBAFORGE_INSTALLATION_DIR)
@@ -41,7 +40,7 @@ else
 fi
 
 
-# Install miniconda
+# Install mambaforge
 echo Download ${MAMBAFORGE_URL}
 curl -L ${MAMBAFORGE_URL} > mambaforge.sh
 head mambaforge.sh
@@ -66,14 +65,14 @@ if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
     
     mamba create -n bioconda -y bioconda-utils=$BIOCONDA_UTILS_TAG $BIOCONDA_ADDITIONAL_INSTALL_PKGS
     
-    source ${MINICONDA_INSTALLATION_DIR}/etc/profile.d/mamba.sh
+    source ${MAMBAFORGE_INSTALLATION_DIR}/etc/profile.d/mamba.sh
     mamba activate bioconda
     
     # Set local channel as highest priority (requires conda-build, which is
     # installed as a dependency of bioconda-utils)
-    mkdir -p "${MINICONDA_INSTALLATION_DIR}/conda-bld/{noarch,linux-64,osx-64}"
-    conda index "${MINICONDA_INSTALLATION_DIR}/conda-bld"
-    conda config --system --add channels "file://${MINICONDA_INSTALLATION_DIR}/conda-bld"
+    mkdir -p "${MAMBAFORGE_INSTALLATION_DIR}/conda-bld/{noarch,linux-64,osx-64}"
+    conda index "${MAMBAFORGE_INSTALLATION_DIR}/conda-bld"
+    conda config --system --add channels "file://${MAMBAFORGE_INSTALLATION_DIR}/conda-bld"
 fi
 
 echo "=========="
