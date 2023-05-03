@@ -73,7 +73,7 @@ if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
     # installed as a dependency of bioconda-utils)
     mkdir -p "${MAMBAFORGE_INSTALLATION_DIR}/conda-bld/{noarch,linux-64,osx-64}"
     conda index "${MAMBAFORGE_INSTALLATION_DIR}/conda-bld"
-    conda config --system --add channels "file://${MAMBAFORGE_INSTALLATION_DIR}/conda-bld"
+    conda config --add channels "file://${MAMBAFORGE_INSTALLATION_DIR}/conda-bld"
 fi
 
 echo "=========="
