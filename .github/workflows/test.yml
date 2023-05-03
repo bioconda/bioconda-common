@@ -1,0 +1,14 @@
+name: PR Tests
+on: [pull_request]
+
+jobs:
+  test-linux:
+    name: Linux tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test install bioconda-utils
+        run: |
+          COMMON_GIT_REF=${GITHUB_SHA} bash install-and-set-up-conda.sh
