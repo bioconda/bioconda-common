@@ -50,10 +50,10 @@ export PATH="${MAMBAFORGE_INSTALLATION_DIR}/bin:${PATH}"
 
 # Set up channels
 conda config --set always_yes yes
-conda config --system --add channels defaults
-conda config --system --add channels bioconda
-conda config --system --add channels conda-forge
-conda config --system --set channel_priority strict
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority strict
 mamba info
 
 mamba install mamba -y
