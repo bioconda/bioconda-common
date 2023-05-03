@@ -19,7 +19,7 @@ BIOCONDA_UTILS_TAG=$(grep "^BIOCONDA_UTILS_TAG=" common.sh | cut -f2 -d "=" | se
 MAMBAFORGE_VER=$(grep "^MAMBAFORGE_VER=" common.sh | cut -f2 -d "=")
 MAMBAFORGE_INSTALLATION_DIR="/opt/mambaforge"
 ARCH=$(uname -m)
-MAMBAFORGE_URL="https://github.com/conda-forge/miniforge/releases/download/${MAMBAFORGE_VER}/Mambaforge-${MAMBAFORGE_VER}-Linux-x86_64.sh"
+MAMBAFORGE_URL="https://github.com/conda-forge/miniforge/releases/download/${MAMBAFORGE_VER}/Mambaforge-${MAMBAFORGE_VER}-${OS}-${ARCH}.sh"
 
 if [[ $(uname) == "Darwin" ]]; then
     OS="MacOSX"
