@@ -13,7 +13,6 @@ set -e
 # Extract the versions we should be using from common.sh
 COMMON_GIT_REF=${COMMON_GIT_REF:-master}
 curl -L "https://raw.githubusercontent.com/bioconda/bioconda-common/${COMMON_GIT_REF}/common.sh" > common.sh
-cat common.sh
 
 BIOCONDA_UTILS_TAG=$(grep "^BIOCONDA_UTILS_TAG=" common.sh | cut -f2 -d "=" | sed "s/^v//g")
 MAMBAFORGE_VER=$(grep "^MAMBAFORGE_VER=" common.sh | cut -f2 -d "=")
