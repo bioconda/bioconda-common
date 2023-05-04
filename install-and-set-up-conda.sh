@@ -48,6 +48,7 @@ bash mambaforge.sh -b -p "${MAMBAFORGE_INSTALLATION_DIR}"
 export PATH="${MAMBAFORGE_INSTALLATION_DIR}/bin:${PATH}"
 
 # Set up channels
+# TODO unify with the configure-conda.sh script
 conda config --set always_yes yes
 conda config --add channels defaults
 conda config --add channels bioconda
