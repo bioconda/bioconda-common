@@ -62,9 +62,8 @@ mamba install mamba -y
 # testing bioconda-utils itself, we don't want to install it from conda, in
 # which case set BIOCONDA_DISABLE_BUILD_PREP to a non-zero value.
 if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
-    # TODO temporarily downgrade to requests=2.27.1 as newer versions may use simplejson,
-    # which causes a bug fixed here: https://github.com/conda/conda/pull/12683 
-    mamba create -n bioconda -y requests=2.27.1 bioconda-utils=$BIOCONDA_UTILS_TAG $BIOCONDA_ADDITIONAL_INSTALL_PKGS
+    
+    mamba create -n bioconda -y bioconda-utils=$BIOCONDA_UTILS_TAG $BIOCONDA_ADDITIONAL_INSTALL_PKGS
     
     source ${MAMBAFORGE_INSTALLATION_DIR}/etc/profile.d/conda.sh
     source ${MAMBAFORGE_INSTALLATION_DIR}/etc/profile.d/mamba.sh
