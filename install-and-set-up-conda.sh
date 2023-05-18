@@ -78,8 +78,7 @@ if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
     source ${MAMBAFORGE_INSTALLATION_DIR}/etc/profile.d/mamba.sh
     
     # set up env with all dependencies
-    wget https://raw.githubusercontent.com/bioconda/bioconda-utils/$BIOCONDA_UTILS_TAG/bioconda_utils/bioconda_utils-requirements.txt
-    mamba create -n bioconda -y -f bioconda_utils-requirements.txt $BIOCONDA_ADDITIONAL_INSTALL_PKGS
+    mamba create -n bioconda -y --file https://raw.githubusercontent.com/bioconda/bioconda-utils/$BIOCONDA_UTILS_TAG/bioconda_utils/bioconda_utils-requirements.txt $BIOCONDA_ADDITIONAL_INSTALL_PKGS
     
     mamba activate bioconda
     
