@@ -65,7 +65,7 @@ export PATH="${MAMBAFORGE_INSTALLATION_DIR}/bin:${PATH}"
 
 # Set up channels
 # disable build preparation here because we don't yet have the local channel from conda-build
-BIOCONDA_DISABLE_BUILD_PREP=0 source configure-conda.sh
+BIOCONDA_DISABLE_BUILD_PREP=0 bash configure-conda.sh
 
 mamba install mamba -y
 
