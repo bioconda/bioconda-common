@@ -11,9 +11,6 @@ set -e
 # - Sets up local channel to have highest priority (unless $BIOCONDA_DISABLE_BUILD_PREP=1)
 
 # Extract the versions we should be using from common.sh
-COMMON_GIT_REF=${COMMON_GIT_REF:-master}
-curl -L "https://raw.githubusercontent.com/bioconda/bioconda-common/${COMMON_GIT_REF}/common.sh" > common.sh
-
 if [ ! -f common.sh ]
 then
     echo "ERROR: The file common.sh cannot be found in $(pwd). Please ensure it is present, e.g. using wget from the bioconda/bioconda-common repository. Exiting."
