@@ -5,7 +5,20 @@
 # but mamba does not support that at the time of implementation
 # (it ignores settings made with --system).
 
-MAMBAFORGE_INSTALLATION_DIR="/opt/mambaforge"
+if [ ! -f common.sh ]
+then
+    echo "ERROR: The file common.sh cannot be found in $(pwd). Please ensure it is present, e.g. using wget from the bioconda/bioconda-common repository. Exiting."
+    exit 1
+fi
+
+source common.sh
+
+# assert that common.sh has set the variables we need
+if [ -z ${MAMBAFORGE_INSTALLATION_DIR+x} ]
+then
+    echo "ERROR: The variable MAMBAFORGE_INSTALLATION_DIR is not set by common.sh. Exiting."
+    exit 1
+fi
 
 conda config --set always_yes yes
 conda config --add channels defaults

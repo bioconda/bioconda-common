@@ -14,9 +14,25 @@ set -e
 COMMON_GIT_REF=${COMMON_GIT_REF:-master}
 curl -L "https://raw.githubusercontent.com/bioconda/bioconda-common/${COMMON_GIT_REF}/common.sh" > common.sh
 
-BIOCONDA_UTILS_TAG=$(grep "^BIOCONDA_UTILS_TAG=" common.sh | cut -f2 -d "=" | sed "s/^v//g")
-MAMBAFORGE_VER=$(grep "^MAMBAFORGE_VER=" common.sh | cut -f2 -d "=")
-MAMBAFORGE_INSTALLATION_DIR="/opt/mambaforge"
+if [ ! -f common.sh ]
+then
+    echo "ERROR: The file common.sh cannot be found in $(pwd). Please ensure it is present, e.g. using wget from the bioconda/bioconda-common repository. Exiting."
+    exit 1
+fi
+
+source common.sh
+
+# assert that common.sh has set the variables we need
+for var in BIOCONDA_UTILS_TAG MAMBAFORGE_VER MAMBAFORGE_INSTALLATION_DIR
+do
+    if [ -z ${var+x} ]
+    then
+        echo "ERROR: The variable $var is not set by common.sh. Exiting."
+        exit 1
+    fi
+done
+
+BIOCONDA_UTILS_VER=$(echo ${BIOCONDA_UTILS_TAG} | sed "s/^v//g")
 ARCH=$(uname -m)
 
 if [[ $(uname) == "Darwin" ]]; then
@@ -59,15 +75,20 @@ mamba info
 mamba install mamba -y
 
 # By default, for building packages, we install bioconda-utils. However when
-# testing bioconda-utils itself, we don't want to install it from conda, in
+# testing bioconda-utils itself, we don't want to install a release, in
 # which case set BIOCONDA_DISABLE_BUILD_PREP to a non-zero value.
 if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
     
-    mamba create -n bioconda -y bioconda-utils=$BIOCONDA_UTILS_TAG $BIOCONDA_ADDITIONAL_INSTALL_PKGS
-    
     source ${MAMBAFORGE_INSTALLATION_DIR}/etc/profile.d/conda.sh
     source ${MAMBAFORGE_INSTALLATION_DIR}/etc/profile.d/mamba.sh
+    
+    # set up env with all dependencies
+    mamba create -n bioconda -y -f https://raw.githubusercontent.com/bioconda/bioconda-utils/$BIOCONDA_UTILS_TAG/bioconda_utils/bioconda_utils-requirements.txt $BIOCONDA_ADDITIONAL_INSTALL_PKGS
+    
     mamba activate bioconda
+    
+    # install bioconda-utils itself via pip (this way we don't always have to wait for the conda package to be built before being able to fix things here)
+    pip install git+https://github.com/bioconda/bioconda-utils.git@$BIOCONDA_UTILS_TAG
     
     # Set local channel as highest priority (requires conda-build, which is
     # installed as a dependency of bioconda-utils)
