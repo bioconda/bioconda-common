@@ -10,6 +10,12 @@ set -e
 #   $BIOCONDA_DISABLE_BUILD_PREP=1). Version is determined by common.sh.
 # - Sets up local channel to have highest priority (unless $BIOCONDA_DISABLE_BUILD_PREP=1)
 
+if [ ! -f configure-conda.sh ]
+then
+    echo "ERROR: The file configure-conda.sh cannot be found in $(pwd). Please ensure it is present, e.g. using wget from the bioconda/bioconda-common repository. Exiting."
+    exit 1
+fi
+
 # Extract the versions we should be using from common.sh
 if [ ! -f common.sh ]
 then
@@ -61,13 +67,7 @@ bash mambaforge.sh -b -p "${MAMBAFORGE_INSTALLATION_DIR}"
 export PATH="${MAMBAFORGE_INSTALLATION_DIR}/bin:${PATH}"
 
 # Set up channels
-# TODO unify with the configure-conda.sh script
-conda config --set always_yes yes
-conda config --add channels defaults
-conda config --add channels bioconda
-conda config --add channels conda-forge
-conda config --set channel_priority strict
-mamba info
+source configure-conda.sh
 
 mamba install mamba -y
 
