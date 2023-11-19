@@ -1,5 +1,9 @@
+# Overview
+
 This repository acts as a central "source of truth" which can be used by
 various components of the Bioconda build system.
+
+# Components
 
 **`common.sh`:** contains environment variables that control versions.
 
@@ -9,6 +13,8 @@ various components of the Bioconda build system.
 - installs the version of bioconda-utils specified in common.sh via pip install
 
 **`configure-conda.sh`:** ensures channels are configured correctly.
+
+# Typical usage
 
 In practice, a typical CI environment will do the following:
 
