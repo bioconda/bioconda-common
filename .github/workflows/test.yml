@@ -12,3 +12,4 @@ jobs:
       - name: Test install bioconda-utils
         run: |
           COMMON_GIT_REF=${GITHUB_SHA} bash install-and-set-up-conda.sh
+          bash configure-conda.sh
