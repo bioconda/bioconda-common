@@ -87,7 +87,7 @@ if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
     
     # Set local channel as highest priority (requires conda-build, which is
     # installed as a dependency of bioconda-utils)
-    mkdir -p "${MAMBAFORGE_INSTALLATION_DIR}/conda-bld/{noarch,linux-64,osx-64,linux-aarch64}"
+    mkdir -p "${MAMBAFORGE_INSTALLATION_DIR}/conda-bld/{noarch,linux-64,osx-64,linux-aarch64,osx-arm64}"
     conda index "${MAMBAFORGE_INSTALLATION_DIR}/conda-bld"
     conda config --add channels "file://${MAMBAFORGE_INSTALLATION_DIR}/conda-bld"
 fi
