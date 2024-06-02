@@ -25,7 +25,8 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 conda config --remove channels defaults || true
 conda config --set channel_priority strict
-conda config --set conda_build.pkg_format 2
+# .conda support is pending https://github.com/conda/infrastructure/issues/950
+# conda config --set conda_build.pkg_format 2
 
 if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
     conda config --add channels "file://${MAMBAFORGE_INSTALLATION_DIR}/conda-bld"
