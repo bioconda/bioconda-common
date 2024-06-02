@@ -21,9 +21,9 @@ then
 fi
 
 conda config --set always_yes yes
-conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
+conda config --remove channels defaults || true
 conda config --set channel_priority strict
 conda config --set conda_build.pkg_format 2
 
