@@ -11,7 +11,7 @@ arch=$(uname -m)
 if [[ "$platform" == "Darwin" ]]; then
     if [[ "$arch" == "arm64" ]]; then
         MACOSX_DEPLOYMENT_TARGET=11
-    elif [[ "$arch" == 'x86_64' ]] then
+    elif [[ "$arch" == 'x86_64' ]]; then
         MACOSX_DEPLOYMENT_TARGET=10.13
         MACOSX_DEPLOYMENT_TARGET=10.13
     fi
