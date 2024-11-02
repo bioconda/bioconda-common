@@ -50,11 +50,11 @@ else
     BIOCONDA_ADDITIONAL_INSTALL_PKGS=""
 fi
 
-MAMBAFORGE_URL="https://github.com/conda-forge/miniforge/releases/download/${MAMBAFORGE_VER}/Mambaforge-${MAMBAFORGE_VER}-${OS}-${ARCH}.sh"
+MINIFORGE_URL="https://github.com/conda-forge/miniforge/releases/download/${MAMBAFORGE_VER}/Miniforge3-${MAMBAFORGE_VER}-${OS}-${ARCH}.sh"
 
 # Install mambaforge
-echo Download ${MAMBAFORGE_URL}
-curl -L ${MAMBAFORGE_URL} > mambaforge.sh
+echo Download ${MINIFORGE_URL}
+curl -L ${MINIFORGE_URL} > mambaforge.sh
 head mambaforge.sh
 bash mambaforge.sh -b -p "${MAMBAFORGE_INSTALLATION_DIR}"
 
