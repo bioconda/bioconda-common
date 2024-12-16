@@ -1,5 +1,5 @@
 BIOCONDA_UTILS_TAG=v3.5.0
-MAMBAFORGE_VER=24.9.2-0
+MAMBAFORGE_VER=24.11.0-1
 MAMBAFORGE_INSTALLATION_DIR="/opt/mambaforge"
 platform=$(uname -s)
 arch=$(uname -m)
