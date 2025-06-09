@@ -1,6 +1,7 @@
-BIOCONDA_UTILS_TAG=v3.7.2
-MAMBAFORGE_VER=24.11.0-1
-MAMBAFORGE_INSTALLATION_DIR="/opt/mambaforge"
+# Respect overrides from environment
+BIOCONDA_UTILS_TAG=${BIOCONDA_UTILS_TAG:="v3.7.2"}
+MAMBAFORGE_VER=${MAMBAFORGE_VER:="24.11.0-1"}
+MAMBAFORGE_INSTALLATION_DIR=${MAMBAFORGE_INSTALLATION_DIR:="/opt/mambaforge"}
 platform=$(uname -s)
 arch=$(uname -m)
 if [[ "$platform" == "Darwin" ]]; then
