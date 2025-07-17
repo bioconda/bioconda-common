@@ -14,9 +14,9 @@ fi
 source common.sh
 
 # assert that common.sh has set the variables we need
-if [ -z ${MAMBAFORGE_INSTALLATION_DIR+x} ]
+if [ -z ${MINIFORGE_INSTALLATION_DIR+x} ]
 then
-    echo "ERROR: The variable MAMBAFORGE_INSTALLATION_DIR is not set by common.sh. Exiting."
+    echo "ERROR: The variable MINIFORGE_INSTALLATION_DIR is not set by common.sh. Exiting."
     exit 1
 fi
 
@@ -29,5 +29,5 @@ conda config --set channel_priority strict
 # conda config --set conda_build.pkg_format 2
 
 if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
-    conda config --add channels "file://${MAMBAFORGE_INSTALLATION_DIR}/conda-bld"
+    conda config --add channels "file://${MINIFORGE_INSTALLATION_DIR}/conda-bld"
 fi
