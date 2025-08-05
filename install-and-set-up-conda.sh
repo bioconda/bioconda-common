@@ -33,7 +33,7 @@ done
 BIOCONDA_UTILS_VER=$(echo ${BIOCONDA_UTILS_TAG} | sed "s/^v//g")
 ARCH=$(uname -m)
 
-if [[ $(uname) == "Darwin" ]]; then
+if [[ "$(uname -s)" == "Darwin" ]]; then
     OS="MacOSX"
     
     # Remove existing installation on macOS runners
@@ -66,7 +66,7 @@ BIOCONDA_DISABLE_BUILD_PREP=1 bash configure-conda.sh
 # By default, for building packages, we install bioconda-utils. However when
 # testing bioconda-utils itself, we don't want to install a release, in
 # which case set BIOCONDA_DISABLE_BUILD_PREP to a non-zero value.
-if [ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]; then
+if [[ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]]; then
     
     source ${MINIFORGE_INSTALLATION_DIR}/etc/profile.d/conda.sh
     source ${MINIFORGE_INSTALLATION_DIR}/etc/profile.d/mamba.sh
@@ -94,4 +94,3 @@ conda config --show
 echo "=========="
 echo "environment(s): $(conda env list)"
 echo "DONE setting up via $0"
-
