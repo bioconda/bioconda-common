@@ -8,7 +8,7 @@ various components of the Bioconda build system.
 **`common.sh`:** contains environment variables that control versions.
 
 **`install-and-set-up-conda.sh`:**
-- downloads and installs conda using the Mambaforge distribution
+- downloads and installs conda using the Miniforge distribution
 - installs bioconda-utils dependencies
 - installs the version of bioconda-utils specified in common.sh via pip install
 
