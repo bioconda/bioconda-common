@@ -1,6 +1,6 @@
 # Respect overrides from environment
-BIOCONDA_UTILS_TAG=${BIOCONDA_UTILS_TAG:="v5.0.0"}
-MINIFORGE_VER=${MINIFORGE_VER:="26.3.2-3"}
+BIOCONDA_UTILS_TAG=${BIOCONDA_UTILS_TAG:="v5.1.0"}
+MINIFORGE_VER=${MINIFORGE_VER:="26.7.2-0"}
 MINIFORGE_INSTALLATION_DIR=${MINIFORGE_INSTALLATION_DIR:="/opt/mambaforge"}
 platform=$(uname -s)
 arch=$(uname -m)

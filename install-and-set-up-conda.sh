@@ -22,7 +22,7 @@ source common.sh
 # assert that common.sh has set the variables we need
 for var in BIOCONDA_UTILS_TAG MINIFORGE_VER MINIFORGE_INSTALLATION_DIR
 do
-    if [[ -z ${var+x} ]]; then
+    if [[ -z ${!var+x} ]]; then
         echo "ERROR: The variable $var is not set by common.sh. Exiting."
         exit 1
     fi
@@ -70,7 +70,9 @@ if [[ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]]; then
     source ${MINIFORGE_INSTALLATION_DIR}/etc/profile.d/conda.sh
 
     # set up env with all dependencies
-    conda create -n bioconda -y --file https://raw.githubusercontent.com/bioconda/bioconda-utils/$BIOCONDA_UTILS_TAG/bioconda_utils/bioconda_utils-requirements.txt $BIOCONDA_ADDITIONAL_INSTALL_PKGS
+    REQS_URL="https://raw.githubusercontent.com/bioconda/bioconda-utils/$BIOCONDA_UTILS_TAG/bioconda_utils/bioconda_utils-requirements.txt"
+    curl -fsSL "$REQS_URL" -o bioconda_utils-requirements.txt
+    conda create -n bioconda -y --file bioconda_utils-requirements.txt $BIOCONDA_ADDITIONAL_INSTALL_PKGS
 
     conda activate bioconda
 
@@ -79,7 +81,7 @@ if [[ ${BIOCONDA_DISABLE_BUILD_PREP:=0} == 0 ]]; then
 
     # Set local channel as highest priority (requires conda-build, which is
     # installed as a dependency of bioconda-utils)
-    mkdir -p "${MINIFORGE_INSTALLATION_DIR}/conda-bld/{noarch,linux-64,osx-64,linux-aarch64,osx-arm64}"
+    mkdir -p "${MINIFORGE_INSTALLATION_DIR}"/conda-bld/{noarch,linux-64,osx-64,linux-aarch64,osx-arm64}
     # The base installation does not include conda-index, so use "command conda" to run bioconda
     # env's "conda index".
     command conda index "${MINIFORGE_INSTALLATION_DIR}/conda-bld"
